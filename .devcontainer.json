@@ -1,0 +1,27 @@
+{
+  "name": "event-namecard-generator",
+  "image": "oven/bun:1",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {"version": "latest"},
+    "ghcr.io/devcontainers/features/sshd:1": {}
+	},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "[html][css][javascript][typescript][typescriptreact][json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true,
+          "editor.formatOnSaveMode": "file",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "prettier.semi": false,
+        "prettier.singleQuote": true
+      }
+    }
+  }
+}
