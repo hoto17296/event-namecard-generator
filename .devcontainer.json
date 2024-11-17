@@ -5,6 +5,7 @@
     "ghcr.io/devcontainers/features/git:1": {"version": "latest"},
     "ghcr.io/devcontainers/features/sshd:1": {}
 	},
+  "postCreateCommand": "bun install",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -19,8 +20,7 @@
             "source.organizeImports": "explicit"
           }
         },
-        "prettier.semi": false,
-        "prettier.singleQuote": true
+        "prettier.semi": false
       }
     }
   }
