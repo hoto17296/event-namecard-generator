@@ -1,21 +1,37 @@
-.App .page {
-  width: 210mm; /* A4 用紙の横幅 */
-  height: 297mm; /* A4 用紙の縦幅 */
-  page-break-before: always; /* 改ページする */
+body {
+  background-color: #eee;
 }
 
-.App .card {
+.Page {
+  background-color: #fff;
+  page-break-before: always;
+}
+
+.Card {
   display: inline-block;
-  width: 105mm; /* 名札1枚あたりの横幅 */
-  height: 74.2mm; /* 名札1枚あたりの縦幅 */
   border: 1px #ccc solid;
   vertical-align: top;
   box-sizing: border-box;
 }
 
-.App .card > img {
-  width: 40mm; /* 名札に配置するアイコン画像の横幅 */
-  height: 40mm; /* 名札に配置するアイコン画像の縦幅 */
-  margin: 6mm;
-  border-radius: 20%; /* 角を丸くする */
+.Widget {
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  width: 600px;
+  max-width: 100%;
+}
+
+.Widget :global(.ant-collapse) {
+  background-color: #f9f9f9;
+}
+
+@media print {
+  body {
+    background-color: transparent;
+  }
+
+  .Widget {
+    display: none;
+  }
 }
