@@ -1,6 +1,7 @@
 import { useState } from "react"
+import style from "./App.module.css"
 
-export async function file2dataUrl(file: File): Promise<string> {
+async function file2dataUrl(file: File): Promise<string> {
   if (!(file instanceof File)) throw new TypeError()
   const fileReader = new FileReader()
   await new Promise((resolve, reject) => {
@@ -9,6 +10,10 @@ export async function file2dataUrl(file: File): Promise<string> {
     fileReader.readAsDataURL(file)
   })
   return fileReader.result as string
+}
+
+function chunkArray<T>(arr: T[], size: number): T[][] {
+  return arr.flatMap((_, i, __) => (i % size ? [] : [arr.slice(i, i + size)]))
 }
 
 function App() {
@@ -30,7 +35,7 @@ function App() {
 
   if (images === undefined) {
     return (
-      <main>
+      <main className={style.App}>
         <h1>Event NameCard Generator</h1>
         <button onClick={onClickFolderSelectButton}>
           Select icon images folder
@@ -42,7 +47,20 @@ function App() {
   if (images.length === 0)
     throw new Error("There are no image files in the specified folder.")
 
-  return <>{images.length} images</>
+  const cardsPerPage = 8
+  return (
+    <main className={style.App}>
+      {chunkArray(images, cardsPerPage).map((pageImages, idx) => (
+        <div key={idx} className={style.page}>
+          {pageImages.map((image, idx) => (
+            <div key={idx} className={style.card}>
+              <img src={image} />
+            </div>
+          ))}
+        </div>
+      ))}
+    </main>
+  )
 }
 
 export default App
