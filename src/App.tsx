@@ -5,8 +5,12 @@ import style from "./App.module.css"
 const PAPER_SIZES: {
   [key: string]: { label: string; width: number; height: number }
 } = {
+  a5: { label: "A5", width: 148, height: 210 },
+  b5: { label: "B5", width: 182, height: 257 },
   a4: { label: "A4", width: 210, height: 297 },
   b4: { label: "B4", width: 257, height: 364 },
+  a3: { label: "A3", width: 297, height: 420 },
+  b3: { label: "B3", width: 364, height: 515 },
 }
 
 async function file2dataUrl(file: File): Promise<string> {
